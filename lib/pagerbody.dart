@@ -4,7 +4,7 @@ import 'package:flutter_application_1/teamstat.dart';
 import 'package:flutter_application_1/goalstat.dart';
 import 'soccermodel.dart';
 
-Widget PageBody(List<SoccerMatch> allmatches) {
+Widget PageBody(List<SoccerMatch> allmatches, context) {
   return Column(
     children: [
       Expanded(
@@ -59,7 +59,7 @@ Widget PageBody(List<SoccerMatch> allmatches) {
                   child: ListView.builder(
                     itemCount: allmatches.length,
                     itemBuilder: (context, index) {
-                      return matchTile(allmatches[index]);
+                      return matchTile(allmatches[index], context);
                     },
                   ),
                 )

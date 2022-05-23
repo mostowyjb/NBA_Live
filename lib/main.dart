@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api_manager.dart';
 import 'package:flutter_application_1/pagerbody.dart';
+import 'package:flutter_application_1/gamebody.dart';
 import 'package:flutter_application_1/soccermodel.dart';
 
 void main() {
@@ -34,7 +35,7 @@ class _SoccerAppState extends State<SoccerApp> {
         backgroundColor: Color(0xFFFAFAFA),
         elevation: 0.0,
         title: Text(
-          "SOCCERBOARD",
+          "SCORERBOARD",
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -47,8 +48,54 @@ class _SoccerAppState extends State<SoccerApp> {
         builder: (context, snapshot) {
           //the future builder is very intersting to use when you work with api
           if (snapshot.hasData) {
-            debugPrint('test: ${snapshot.data}');
-            return PageBody(snapshot.data!);
+            return PageBody(snapshot.data!, context);
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        }, // here we will buil the app layout
+      ),
+    );
+  }
+}
+
+class GameScreen extends StatelessWidget {
+  final String data;
+  final String idHome;
+  final String idAway;
+
+  const GameScreen(
+      {Key? key,
+      required this.data,
+      required this.idHome,
+      required this.idAway})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFFFAFAFA),
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        backgroundColor: Color(0xFF4373D9),
+        elevation: 0.0,
+        title: Text(
+          "SCORERBOARD",
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+      ),
+      //now we have finished the api service let's call it
+      //Now befo re we create Our layout let's create our API service
+      body: FutureBuilder<SoccerMatch>(
+        future: SoccerApi()
+            .getMatcheById(this.data), //Here we will call our getData() method,
+        builder: (context, snapshot) {
+          //the future builder is very intersting to use when you work with api
+          if (snapshot.hasData) {
+            return GameBody(snapshot.data!, context);
           } else {
             return Center(
               child: CircularProgressIndicator(),

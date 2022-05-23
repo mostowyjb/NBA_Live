@@ -14,7 +14,7 @@ Widget goalStat(String expandedTime, int homeGoal, int awayGoal) {
         Text(
           "${expandedTime}",
           style: TextStyle(
-            fontSize: 30.0,
+            fontSize: 20.0,
           ),
         ),
         Expanded(
@@ -23,7 +23,7 @@ Widget goalStat(String expandedTime, int homeGoal, int awayGoal) {
               "${home} - ${away}",
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 36.0,
+                fontSize: 30.0,
               ),
             ),
           ),

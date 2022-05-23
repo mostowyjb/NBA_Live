@@ -13,9 +13,10 @@ class SoccerMatch {
   SoccerMatch(this.fixture, this.home, this.away, this.goal);
 
   factory SoccerMatch.fromJson(Map<Object, dynamic> json) {
-    debugPrint(json['home_team'].toString());
     var format = DateFormat('dd/MM/yyyy');
-    var date = format.format(DateTime.parse(json['date'].toString()));
+    var dateWOH = json['date'].split('T');
+    var dateWOUTC = dateWOH[0].split(' ');
+    var date = format.format(DateTime.parse(dateWOUTC[0]));
     return SoccerMatch(
         Fixture.fromJson(json['id'].toString(), date),
         Team.fromJson(json['home_team']),
@@ -31,18 +32,8 @@ class Fixture {
   Fixture(this.id, this.date);
 
   factory Fixture.fromJson(String id, String date) {
+    debugPrint('Fixture');
     return Fixture(id, date);
-  }
-}
-
-//here we will store the Status
-class Status {
-  int elapsedTime;
-  String long;
-  Status(this.elapsedTime, this.long);
-
-  factory Status.fromJson(Map<String, dynamic> json) {
-    return Status(json['elapsed'], json['long']);
   }
 }
 
@@ -59,8 +50,14 @@ class Team {
       this.fullName, this.name);
 
   factory Team.fromJson(Map<String, dynamic> json) {
-    return Team(json['id'], json['abbreviation'], json['city'],
-        json['conference'], json['division'], json['full_name'], json['name']);
+    return Team(
+        json['id'],
+        json['abbreviation'].toString(),
+        json['city'].toString(),
+        json['conference'].toString(),
+        json['division'].toString(),
+        json['full_name'].toString(),
+        json['name'].toString());
   }
 }
 
