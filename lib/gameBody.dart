@@ -112,7 +112,7 @@ Widget GameBody(SoccerMatch game, context) {
   }
 
   List<dynamic> _getTabs1() {
-    List cards = ['Local', 'Visiteur']
+    List cards = [game.home.fullName, game.away.fullName]
         .map(
           (e) => (e),
         )
