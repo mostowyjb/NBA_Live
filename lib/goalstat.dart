@@ -9,8 +9,6 @@ Widget goalStat(String expandedTime, int homeGoal, int awayGoal) {
   if (away == null) away = 0;
   return Expanded(
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           expandedTime,
@@ -18,17 +16,16 @@ Widget goalStat(String expandedTime, int homeGoal, int awayGoal) {
             fontSize: 20.0,
           ),
         ),
-        Expanded(
-          child: Center(
-            child: Text(
-              "${home} - ${away}",
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 26.0,
-              ),
-            ),
+        const SizedBox(
+          height: 10.0,
+        ),
+        Text(
+          "${home} - ${away}",
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 25.0,
           ),
-        )
+        ),
       ],
     ),
   );

@@ -34,15 +34,21 @@ class _SoccerAppState extends State<SoccerApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAFAFA),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFAFAFA),
-        elevation: 0.0,
-        title: const Text(
-          "SCORERBOARD",
-          style: TextStyle(color: Colors.black),
-        ),
+        backgroundColor: Colors.white,
+        toolbarHeight: 75,
+        titleSpacing: 00.0,
         centerTitle: true,
+        toolbarOpacity: 0.8,
+        elevation: 0.0,
+        title: Container(
+          margin: const EdgeInsets.only(top: 20.0),
+          width: 100,
+          child: Image.asset(
+            'images/nba.png',
+          ),
+        ),
       ),
       //now we have finished the api service let's call it
       //Now befo re we create Our layout let's create our API service
@@ -53,6 +59,10 @@ class _SoccerAppState extends State<SoccerApp> {
           //the future builder is very intersting to use when you work with api
           if (snapshot.hasData) {
             return PageBody(snapshot.data!, context);
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text("${snapshot.error}"),
+            );
           } else {
             return const Center(
               child: CircularProgressIndicator(),
@@ -131,13 +141,16 @@ class GameScreen extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
         ),
-        backgroundColor: const Color(0xFF4373D9),
+        backgroundColor: Colors.red,
+        toolbarHeight: 75,
+        titleSpacing: 00.0,
+        centerTitle: true,
+        toolbarOpacity: 0.8,
         elevation: 0.0,
         title: const Text(
-          "SCORERBOARD",
+          "GAME",
           style: TextStyle(color: Colors.white),
         ),
-        centerTitle: true,
       ),
       //now we have finished the api service let's call it
       //Now befo re we create Our layout let's create our API service
@@ -148,6 +161,10 @@ class GameScreen extends StatelessWidget {
           //the future builder is very intersting to use when you work with api
           if (snapshot.hasData) {
             return GameBody(snapshot.data!, context);
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text("${snapshot.error}"),
+            );
           } else {
             return const Center(
               child: CircularProgressIndicator(),

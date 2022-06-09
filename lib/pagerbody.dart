@@ -16,11 +16,11 @@ Widget PageBody(List<SoccerMatch> allmatches, context) {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               teamStat(allmatches[0].home.name, allmatches[0].home.abbreviation,
-                  allmatches[0].home.conference),
+                  allmatches[0].home.conference, allmatches[0].home.teamImg),
               goalStat(allmatches[0].fixture.date, allmatches[0].goal.home,
                   allmatches[0].goal.away),
               teamStat(allmatches[0].away.name, allmatches[0].away.abbreviation,
-                  allmatches[0].away.conference),
+                  allmatches[0].away.conference, allmatches[0].away.teamImg),
             ],
           ),
         ),
@@ -29,7 +29,7 @@ Widget PageBody(List<SoccerMatch> allmatches, context) {
         flex: 5,
         child: Container(
           decoration: const BoxDecoration(
-            color: Color(0xFF4373D9),
+            color: Colors.red,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(40.0),
               topRight: Radius.circular(40.0),

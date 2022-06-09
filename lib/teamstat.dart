@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
-Widget teamStat(String team, String abr, String conf) {
+Widget teamStat(String team, String abr, String conf, String img) {
+  debugPrint(img);
   return Expanded(
     child: Column(
       children: [
+        CircleAvatar(
+          radius: 30,
+          backgroundImage: NetworkImage(img),
+        ),
         Text(
           team,
           style: const TextStyle(

@@ -134,11 +134,11 @@ Widget GameBody(SoccerMatch game, context) {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              teamStat(
-                  game.home.name, game.home.abbreviation, game.home.conference),
+              teamStat(game.home.name, game.home.abbreviation,
+                  game.home.conference, game.home.teamImg),
               goalStat(game.fixture.date, game.goal.home, game.goal.away),
-              teamStat(
-                  game.away.name, game.away.abbreviation, game.away.conference),
+              teamStat(game.away.name, game.away.abbreviation,
+                  game.away.conference, game.away.teamImg),
             ],
           ),
         ),
@@ -180,7 +180,7 @@ Widget GameBody(SoccerMatch game, context) {
                         );
                       },
                       colors: const <Color>[
-                        Color(0xFF4373D9),
+                        Colors.red,
                         Color(0xFF4373D9),
                       ],
                       children: _getChildren1(game.fixture.id),

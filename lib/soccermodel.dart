@@ -10,17 +10,19 @@ class SoccerMatch {
   Team home;
   Team away;
   Goal goal;
+
   SoccerMatch(this.fixture, this.home, this.away, this.goal);
 
-  factory SoccerMatch.fromJson(Map<Object, dynamic> json) {
+  factory SoccerMatch.fromJson(
+      Map<Object, dynamic> json, String urlHome, String urlVisitor) {
     var format = DateFormat('dd/MM/yyyy');
     var dateWOH = json['date'].split('T');
     var dateWOUTC = dateWOH[0].split(' ');
     var date = format.format(DateTime.parse(dateWOUTC[0]));
     return SoccerMatch(
         Fixture.fromJson(json['id'].toString(), date),
-        Team.fromJson(json['home_team']),
-        Team.fromJson(json['visitor_team']),
+        Team.fromJson(json['home_team'], urlHome),
+        Team.fromJson(json['visitor_team'], urlVisitor),
         Goal.fromJson(json['home_team_score'], json['visitor_team_score']));
   }
 }
@@ -46,10 +48,11 @@ class Team {
   String division;
   String fullName;
   String name;
+  String teamImg;
   Team(this.id, this.abbreviation, this.city, this.conference, this.division,
-      this.fullName, this.name);
+      this.fullName, this.name, this.teamImg);
 
-  factory Team.fromJson(Map<String, dynamic> json) {
+  factory Team.fromJson(Map<String, dynamic> json, String url) {
     return Team(
         json['id'],
         json['abbreviation'].toString(),
@@ -57,7 +60,8 @@ class Team {
         json['conference'].toString(),
         json['division'].toString(),
         json['full_name'].toString(),
-        json['name'].toString());
+        json['name'].toString(),
+        url);
   }
 }
 
