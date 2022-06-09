@@ -1,9 +1,10 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'package:flutter/material.dart';
 
 Widget goalStat(String expandedTime, int homeGoal, int awayGoal) {
   var home = homeGoal;
   var away = awayGoal;
-  var elapsed = 1;
   if (home == null) home = 0;
   if (away == null) away = 0;
   return Expanded(
@@ -12,8 +13,8 @@ Widget goalStat(String expandedTime, int homeGoal, int awayGoal) {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          "${expandedTime}",
-          style: TextStyle(
+          expandedTime,
+          style: const TextStyle(
             fontSize: 20.0,
           ),
         ),
@@ -22,8 +23,8 @@ Widget goalStat(String expandedTime, int homeGoal, int awayGoal) {
             child: Text(
               "${home} - ${away}",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 30.0,
+              style: const TextStyle(
+                fontSize: 26.0,
               ),
             ),
           ),

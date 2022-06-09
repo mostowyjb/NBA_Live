@@ -22,10 +22,9 @@ Widget matchTile(SoccerMatch match, context) {
       onTap: () {
         _navigateToNextScreen(context, match.fixture.id,
             match.home.id.toString(), match.away.id.toString());
-        print("You tapped on ${match.fixture.id}");
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 12.0),
+        margin: const EdgeInsets.symmetric(vertical: 12.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,7 +33,7 @@ Widget matchTile(SoccerMatch match, context) {
               child: Text(
                 match.home.name,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
                 ),
@@ -44,7 +43,7 @@ Widget matchTile(SoccerMatch match, context) {
               child: Text(
                 "${homeGoal} - ${awayGoal}",
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
                 ),
@@ -54,7 +53,7 @@ Widget matchTile(SoccerMatch match, context) {
               child: Text(
                 match.away.name,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
                 ),

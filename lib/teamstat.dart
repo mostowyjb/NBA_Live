@@ -6,26 +6,26 @@ Widget teamStat(String team, String abr, String conf) {
       children: [
         Text(
           team,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18.0,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10.0,
         ),
         Text(
           abr,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18.0,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10.0,
         ),
         Text(
           conf,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18.0,
           ),
         ),
