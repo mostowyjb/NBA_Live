@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter_application_1/api_manager.dart';
 import 'package:flutter_application_1/pagerbody.dart';
 import 'package:flutter_application_1/gamebody.dart';
@@ -6,8 +7,12 @@ import 'package:flutter_application_1/playerbody.dart';
 import 'package:flutter_application_1/playermodel.dart';
 import 'package:flutter_application_1/soccermodel.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() => runApp(
+    MaterialApp(debugShowCheckedModeBanner: false, home: BottomNavBar()));
+
+class BottomNavBar extends StatefulWidget {
+  @override
+  _BottomNavBarState createState() => _BottomNavBarState();
 }
 
 class MyApp extends StatelessWidget {
@@ -64,8 +69,10 @@ class _SoccerAppState extends State<SoccerApp> {
               child: Text("${snapshot.error}"),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: Image.asset(
+                "images/shoot.gif",
+              ),
             );
           }
         }, // here we will buil the app layout
@@ -112,8 +119,10 @@ class PlayerScreen extends StatelessWidget {
               child: Text("${snapshot.error}"),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: Image.asset(
+                "images/basketball.gif",
+              ),
             );
           }
         }, // here we will buil the app layout
@@ -166,12 +175,80 @@ class GameScreen extends StatelessWidget {
               child: Text("${snapshot.error}"),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: Image.asset(
+                "images/loading.gif",
+              ),
             );
           }
         }, // here we will buil the app layout
       ),
     );
+  }
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
+  int _page = 1;
+  double _op = 0;
+  Color _color = Colors.blueAccent;
+  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  Widget getWidget() {
+    if (_page == 1) {
+      _op = 1;
+      _color = Colors.red;
+
+      return const Scaffold(body: SoccerApp());
+    }
+    _color = Colors.blueAccent;
+    return Container(
+        color: Colors.blueAccent,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(_page.toString(), textScaleFactor: 10.0),
+              ElevatedButton(
+                child: Text('Go To Page of index 1'),
+                onPressed: () {
+                  final CurvedNavigationBarState? navBarState =
+                      _bottomNavigationKey.currentState;
+                  navBarState?.setPage(1);
+                  getWidget();
+                },
+              )
+            ],
+          ),
+        ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        bottomNavigationBar: CurvedNavigationBar(
+          key: _bottomNavigationKey,
+          index: 1,
+          height: 60.0,
+          items: const <Widget>[
+            Icon(Icons.add, size: 30),
+            Icon(Icons.list, size: 30),
+            Icon(Icons.perm_identity, size: 30),
+          ],
+          color: Colors.white,
+          buttonBackgroundColor: Colors.white,
+          backgroundColor: _color.withOpacity(_op),
+          animationCurve: Curves.easeInOut,
+          animationDuration: const Duration(milliseconds: 600),
+          onTap: (index) {
+            setState(() {
+              _page = index;
+              getWidget();
+            });
+          },
+          letIndexChange: (index) => true,
+        ),
+        body: Container(
+          color: _color,
+          child: getWidget(),
+        ));
   }
 }

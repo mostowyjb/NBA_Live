@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:flutter_application_1/soccermodel.dart';
@@ -43,6 +44,7 @@ class SoccerApi {
       List<SoccerMatch> matches = matchesList
           .map((dynamic item) => SoccerMatch.fromJson(item, imgHome, imgAway))
           .toList();
+      await Future.delayed(const Duration(milliseconds: 2750));
       return matches;
     } else {
       throw "Error";
