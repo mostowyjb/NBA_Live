@@ -8,7 +8,7 @@ import 'package:flutter_application_1/playermodel.dart';
 import 'package:flutter_application_1/soccermodel.dart';
 
 void main() => runApp(
-    MaterialApp(debugShowCheckedModeBanner: false, home: BottomNavBar()));
+    MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -71,7 +71,7 @@ class _SoccerAppState extends State<SoccerApp> {
           } else {
             return Center(
               child: Image.asset(
-                "images/shoot.gif",
+                "images/loading.gif",
               ),
             );
           }
@@ -191,6 +191,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _page = 1;
   double _op = 0;
   Color _color = Colors.blueAccent;
+
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   Widget getWidget() {
     if (_page == 1) {
@@ -250,5 +251,45 @@ class _BottomNavBarState extends State<BottomNavBar> {
           color: _color,
           child: getWidget(),
         ));
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  // video controller
+
+  @override
+  void initState() {
+    super.initState();
+    _playVideo();
+  }
+
+  void _playVideo() async {
+    //add delay till video is complite
+    await Future.delayed(const Duration(milliseconds: 3500));
+
+    // navigating to home screen
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => BottomNavBar()),
+        ModalRoute.withName("/home"));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Image.asset(
+          "images/shoot.gif",
+        ),
+      ),
+    );
   }
 }
