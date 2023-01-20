@@ -187,6 +187,14 @@ class GameScreen extends StatelessWidget {
   }
 }
 
+class RegisterScreen extends State<SoccerApp> {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
+
 class _BottomNavBarState extends State<BottomNavBar> {
   int _page = 1;
   double _op = 0;
