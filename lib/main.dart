@@ -5,10 +5,19 @@ import 'package:flutter_application_1/pagerbody.dart';
 import 'package:flutter_application_1/gamebody.dart';
 import 'package:flutter_application_1/playerbody.dart';
 import 'package:flutter_application_1/playermodel.dart';
+import 'package:flutter_application_1/signup.dart';
 import 'package:flutter_application_1/soccermodel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() => runApp(
-    MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
+}
 
 class BottomNavBar extends StatefulWidget {
   @override
@@ -187,11 +196,34 @@ class GameScreen extends StatelessWidget {
   }
 }
 
-class RegisterScreen extends State<SoccerApp> {
+class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return MaterialApp(
+      title: 'Flutter Authentication',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.blue,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            textStyle: TextStyle(
+              fontSize: 24.0,
+            ),
+            padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+          ),
+        ),
+        textTheme: TextTheme(
+          headline1: TextStyle(
+            fontSize: 46.0,
+            color: Colors.blue.shade700,
+            fontWeight: FontWeight.w500,
+          ),
+          bodyText1: TextStyle(fontSize: 18.0),
+        ),
+      ),
+      home: SignupPage(),
+    );
   }
 }
 
@@ -207,6 +239,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
       _color = Colors.red;
 
       return const Scaffold(body: SoccerApp());
+    }
+    if (_page == 2) {
+      _op = 1;
+      _color = Colors.blueAccent;
+
+      return RegisterScreen();
     }
     _color = Colors.blueAccent;
     return Container(
