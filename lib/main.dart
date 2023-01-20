@@ -10,8 +10,10 @@ import 'package:flutter_application_1/soccermodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() async {
+Future main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -46,30 +47,34 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAgYCKmDOpAFaT7bXG-bvn6Ckj6OvWbzvQ',
-    appId: '1:106308782343:web:130031916dc455ad379da2',
-    messagingSenderId: '106308782343',
-    projectId: 'hoop-stat',
-    authDomain: 'hoop-stat.firebaseapp.com',
-    storageBucket: 'hoop-stat.appspot.com',
+  static FirebaseOptions web = FirebaseOptions(
+    apiKey: dotenv.get('API_KEY_WEB', fallback: 'sane-default'),
+    appId: dotenv.get('API_ID_WEB', fallback: 'sane-default'),
+    messagingSenderId:
+        dotenv.get('MESSAGING_SENDER_ID_WEB', fallback: 'sane-default'),
+    projectId: dotenv.get('PROJECT_ID_WEB', fallback: 'sane-default'),
+    authDomain: dotenv.get('AUTH_DOMAIN_WEB', fallback: 'sane-default'),
+    storageBucket: dotenv.get('STORAGE_BUCKET_WEB', fallback: 'sane-default'),
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDlk8caUhYeaWLtMXIDEwI3ujSANXJvfCA',
-    appId: '1:106308782343:android:cc167259e1be63ec379da2',
-    messagingSenderId: '106308782343',
-    projectId: 'hoop-stat',
-    storageBucket: 'hoop-stat.appspot.com',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.get('API_KEY_ANDROID', fallback: 'sane-default'),
+    appId: dotenv.get('APP_ID_ANDROID', fallback: 'sane-default'),
+    messagingSenderId:
+        dotenv.get('MESSAGING_SENDER_ID_ANDROID', fallback: 'sane-default'),
+    projectId: dotenv.get('PROJECT_ID_ANDROID', fallback: 'sane-default'),
+    storageBucket:
+        dotenv.get('STORAGE_BUCKET_ANDROID', fallback: 'sane-default'),
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBJlr1ujOE3-29n0IxZNcM4F8L0sXiAhnU',
-    appId: '1:106308782343:ios:b7912563eb70f15c379da2',
-    messagingSenderId: '106308782343',
-    projectId: 'hoop-stat',
-    storageBucket: 'hoop-stat.appspot.com',
-    iosClientId: '106308782343-2tviol8r3peclbou3g8nfub8gggqpa49.apps.googleusercontent.com',
-    iosBundleId: 'com.example.flutterApplication1',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: dotenv.get('API_KEY_IOS', fallback: 'sane-default'),
+    appId: dotenv.get('APP_ID_IOS', fallback: 'sane-default'),
+    messagingSenderId:
+        dotenv.get('MESSAGING_SENDER_ID_IOS', fallback: 'sane-default'),
+    projectId: dotenv.get('PROJECT_ID_IOS', fallback: 'sane-default'),
+    storageBucket: dotenv.get('STORAGE_BUCKET_IOS', fallback: 'sane-default'),
+    iosClientId: dotenv.get('IOS_CLIENT_ID', fallback: 'sane-default'),
+    iosBundleId: dotenv.get('IOS_BUNDLE_ID', fallback: 'sane-default'),
   );
 }
