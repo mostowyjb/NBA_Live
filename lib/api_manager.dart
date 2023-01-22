@@ -127,10 +127,11 @@ class SoccerApi {
       var body = jsonDecode(res.body);
       List<dynamic> playersList = [];
       playersList.add(body);
+      var team = jsonEncode(playersList[0]['team']);
+
       try {
         var urltesr =
-            "https://serpapi.com/search?q=${playersList[0]['first_name'].toString()}+${playersList[0]['last_name'].toString()}+picture+player+nba+official&api_key=933fe8d80a623ccabd384d10815c80d79d2a9d5a97887bf53aa764debd8285a9&tbm=isch&ijn=0";
-        debugPrint('test : $urltesr');
+            "https://serpapi.com/search?q=${playersList[0]['first_name'].toString()}+${playersList[0]['last_name'].toString()}+${team[0].toString()}+dribble+background+transparent&tbs=ic:trans&api_key=933fe8d80a623ccabd384d10815c80d79d2a9d5a97887bf53aa764debd8285a9&tbm=isch&ijn=0";
 
         Response res2 = await get(Uri.parse(urltesr), headers: {
           'Access-Control-Allow-Origin': '*',
@@ -141,7 +142,7 @@ class SoccerApi {
           'Access-Control-Max-Age': '86400',
         });
         var bodyUrl = jsonDecode(res2.body);
-        var url = bodyUrl['images_results'][0]['thumbnail'] as String;
+        var url = bodyUrl['images_results'][0]['original'] as String;
         List<PlayerModel> players = playersList
             .map((dynamic item) => PlayerModel.fromJson(item, url))
             .toList();
