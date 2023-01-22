@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/teamstat.dart';
 import 'package:flutter_application_1/goalstat.dart';
@@ -134,11 +133,9 @@ Widget GameBody(SoccerMatch game, context) {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              teamStat(game.home.name, game.home.abbreviation,
-                  game.home.conference, game.home.teamImg),
+              teamStat(game.home.name, game.home.teamImg, context),
               goalStat(game.fixture.date, game.goal.home, game.goal.away),
-              teamStat(game.away.name, game.away.abbreviation,
-                  game.away.conference, game.away.teamImg),
+              teamStat(game.away.name, game.away.teamImg, context),
             ],
           ),
         ),

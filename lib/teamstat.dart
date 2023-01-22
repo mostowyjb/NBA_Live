@@ -1,38 +1,38 @@
 import 'package:flutter/material.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
 
-Widget teamStat(String team, String abr, String conf, String img) {
-  debugPrint(img);
+Widget teamStat(String team, String img, dynamic context) {
   return Expanded(
     child: Column(
+      mainAxisSize: MainAxisSize.max,
       children: [
-        CircleAvatar(
-          radius: 30,
-          backgroundImage: NetworkImage(img),
-        ),
-        Text(
-          team,
-          style: const TextStyle(
-            fontSize: 18.0,
+        Align(
+          alignment: const AlignmentDirectional(0, 0),
+          child: Container(
+            width: 120,
+            height: 120,
+            clipBehavior: Clip.antiAlias,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+            ),
+            child: Image.network(
+              img,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        Text(
-          abr,
-          style: const TextStyle(
-            fontSize: 18.0,
-          ),
-        ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        Text(
-          conf,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 18.0,
-          ),
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+          child: SelectionArea(
+              child: Text(
+            team,
+            textAlign: TextAlign.center,
+            style: FlutterFlowTheme.of(context).bodyText1.override(
+                  fontFamily: 'Poppins',
+                  color: const Color(0xFFF3EED9),
+                  fontSize: 16,
+                ),
+          )),
         ),
       ],
     ),

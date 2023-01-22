@@ -1,31 +1,27 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
 
 import 'package:flutter/material.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
 
-Widget goalStat(String expandedTime, int homeGoal, int awayGoal) {
+Widget goalStat(dynamic context, int homeGoal, int awayGoal) {
   var home = homeGoal;
   var away = awayGoal;
   if (home == null) home = 0;
   if (away == null) away = 0;
   return Expanded(
     child: Column(
+      mainAxisSize: MainAxisSize.max,
       children: [
-        Text(
-          expandedTime,
-          style: const TextStyle(
-            fontSize: 20.0,
-          ),
-        ),
-        const SizedBox(
-          height: 10.0,
-        ),
-        Text(
-          "${home} - ${away}",
+        SelectionArea(
+            child: Text(
+          '$homeGoal - $awayGoal',
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 25.0,
-          ),
-        ),
+          style: FlutterFlowTheme.of(context).bodyText1.override(
+                fontFamily: 'Poppins',
+                color: Color(0xFFF3EED9),
+                fontSize: 16,
+              ),
+        )),
       ],
     ),
   );
