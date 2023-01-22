@@ -45,7 +45,22 @@ dependencies:
   firebase_core: ^2.4.1
   firebase_auth: ^4.2.5
   flutter_dotenv: ^5.0.2
-  
+  auto_size_text: 3.0.0
+  cached_network_image: 3.2.1
+  flutter_animate: 1.0.0
+  flutter_cache_manager: 3.3.0
+  font_awesome_flutter: 10.1.0
+  from_css_color: 2.0.0
+  google_fonts: 3.0.1
+  json_path: 0.4.1
+  page_transition: 2.0.9
+  provider: 6.0.4
+  shared_preferences: 2.0.15
+  sqflite: 2.2.0+2
+  timeago: 3.2.2
+  url_launcher: 6.1.5
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -59,9 +74,8 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: images/nba.png
-
-# For information on the generic Dart part of this file, see the
+  image: images/hoop-stat-icon.png
+# For information on the generic Dart part of this file, see thes
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
@@ -79,6 +93,9 @@ flutter:
     - images/shoot.gif
     - images/basketball.gif
     - .env
+    - images/
+    - images/Lebron.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

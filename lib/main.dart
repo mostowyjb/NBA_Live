@@ -52,17 +52,17 @@ class _SoccerAppState extends State<SoccerApp> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        toolbarHeight: 75,
-        titleSpacing: 00.0,
+        backgroundColor: Color.fromARGB(148, 148, 148, 1),
+        toolbarHeight: 60,
+        titleSpacing: 10.0,
         centerTitle: true,
-        toolbarOpacity: 0.8,
-        elevation: 0.0,
+        toolbarOpacity: 1,
+        elevation: 0,
         title: Container(
-          margin: const EdgeInsets.only(top: 20.0),
-          width: 100,
+          margin: const EdgeInsets.only(top: .0),
+          width: 200,
           child: Image.asset(
-            'images/nba.png',
+            'images/hoop-stat-logo.png',
           ),
         ),
       ),
@@ -103,28 +103,13 @@ class PlayerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint(data);
     return Scaffold(
-      backgroundColor: const Color(0xFFFAFAFA),
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white, //change your color here
-        ),
-        backgroundColor: const Color(0xFF4373D9),
-        elevation: 0.0,
-        title: const Text(
-          "PLAYER",
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-      ),
-      //now we have finished the api service let's call it
-      //Now befo re we create Our layout let's create our API service
       body: FutureBuilder<PlayerModel>(
         future: SoccerApi()
             .getPlayerById(data), //Here we will call our getData() method,
         builder: (context, snapshot) {
           //the future builder is very intersting to use when you work with api
           if (snapshot.hasData) {
-            return PlayerBody(snapshot.data!, context);
+            return PlayerBody(snapshot.data!);
           } else if (snapshot.hasError) {
             return Center(
               child: Text("${snapshot.error}"),
