@@ -7,10 +7,11 @@ import 'package:flutter_application_1/playerbody.dart';
 import 'package:flutter_application_1/playermodel.dart';
 import 'package:flutter_application_1/signup.dart';
 import 'package:flutter_application_1/soccermodel.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
@@ -18,10 +19,13 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
+  runApp(const MaterialApp(
+      debugShowCheckedModeBanner: false, home: SplashScreen()));
 }
 
 class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({Key? key}) : super(key: key);
+
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
@@ -29,7 +33,7 @@ class BottomNavBar extends StatefulWidget {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  // This widget is the root of your application.p
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -46,28 +50,65 @@ class SoccerApp extends StatefulWidget {
   _SoccerAppState createState() => _SoccerAppState();
 }
 
-class _SoccerAppState extends State<SoccerApp> {
+class _SoccerAppState extends State<SoccerApp> with TickerProviderStateMixin {
+  final animationsMap = {
+    'containerOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: const Offset(0, -56),
+          end: const Offset(0, 0),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+  };
+  PageController? pageViewController;
+  final _unfocusNode = FocusNode();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(148, 148, 148, 1),
-        toolbarHeight: 60,
-        titleSpacing: 10.0,
-        centerTitle: true,
-        toolbarOpacity: 1,
-        elevation: 0,
-        title: Container(
-          margin: const EdgeInsets.only(top: .0),
+        backgroundColor: const Color(0xFFEDF0F5),
+        iconTheme: const IconThemeData(color: Color(0xFF202020)),
+        automaticallyImplyLeading: true,
+        title: Image.asset(
+          'images/hoop-stat-logo.png',
           width: 200,
-          child: Image.asset(
-            'images/hoop-stat-logo.png',
-          ),
+          fit: BoxFit.cover,
         ),
+        actions: const [],
+        centerTitle: true,
+        elevation: 0,
       ),
-      //now we have finished the api service let's call it
-      //Now befo re we create Our layout let's create our API service
       body: FutureBuilder<List<SoccerMatch>>(
         future: SoccerApi()
             .getAllMatches(), //Here we will call our getData() method,
@@ -184,6 +225,8 @@ class GameScreen extends StatelessWidget {
 }
 
 class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -194,10 +237,10 @@ class RegisterScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               fontSize: 24.0,
             ),
-            padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+            padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
           ),
         ),
         textTheme: TextTheme(
@@ -206,7 +249,7 @@ class RegisterScreen extends StatelessWidget {
             color: Colors.blue.shade700,
             fontWeight: FontWeight.w500,
           ),
-          bodyText1: TextStyle(fontSize: 18.0),
+          bodyText1: const TextStyle(fontSize: 18.0),
         ),
       ),
       home: SignupPage(),
@@ -217,23 +260,18 @@ class RegisterScreen extends StatelessWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int _page = 1;
   double _op = 0;
-  Color _color = Colors.blueAccent;
 
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   Widget getWidget() {
     if (_page == 1) {
       _op = 1;
-      _color = Colors.red;
 
       return const Scaffold(body: SoccerApp());
     }
     if (_page == 2) {
       _op = 1;
-      _color = Colors.blueAccent;
-
-      return RegisterScreen();
+      return const RegisterScreen();
     }
-    _color = Colors.blueAccent;
     return Container(
         color: Colors.blueAccent,
         child: Center(
@@ -242,7 +280,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             children: <Widget>[
               Text(_page.toString(), textScaleFactor: 10.0),
               ElevatedButton(
-                child: Text('Go To Page of index 1'),
+                child: const Text('Go To Page of index 1'),
                 onPressed: () {
                   final CurvedNavigationBarState? navBarState =
                       _bottomNavigationKey.currentState;
@@ -269,7 +307,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ],
           color: Colors.white,
           buttonBackgroundColor: Colors.white,
-          backgroundColor: _color.withOpacity(_op),
+          backgroundColor: const Color(0xFFEDF0F5),
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 600),
           onTap: (index) {
@@ -281,7 +319,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           letIndexChange: (index) => true,
         ),
         body: Container(
-          color: _color,
+          color: const Color(0xFFEDF0F5),
           child: getWidget(),
         ));
   }
@@ -310,7 +348,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // navigating to home screen
     Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => BottomNavBar()),
+        MaterialPageRoute(builder: (context) => const BottomNavBar()),
         ModalRoute.withName("/home"));
   }
 
