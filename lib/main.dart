@@ -7,10 +7,13 @@ import 'package:flutter_application_1/playerbody.dart';
 import 'package:flutter_application_1/playermodel.dart';
 import 'package:flutter_application_1/signup.dart';
 import 'package:flutter_application_1/soccermodel.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
+// import '../flutter_flow/flutter_flow_theme.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
@@ -46,28 +49,65 @@ class SoccerApp extends StatefulWidget {
   _SoccerAppState createState() => _SoccerAppState();
 }
 
-class _SoccerAppState extends State<SoccerApp> {
+class _SoccerAppState extends State<SoccerApp> with TickerProviderStateMixin {
+  final animationsMap = {
+    'containerOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, -56),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+    'rowOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+  };
+  PageController? pageViewController;
+  final _unfocusNode = FocusNode();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(148, 148, 148, 1),
-        toolbarHeight: 60,
-        titleSpacing: 10.0,
-        centerTitle: true,
-        toolbarOpacity: 1,
-        elevation: 0,
-        title: Container(
-          margin: const EdgeInsets.only(top: .0),
+        backgroundColor: const Color(0xFFEDF0F5),
+        iconTheme: const IconThemeData(color: Color(0xFF202020)),
+        automaticallyImplyLeading: true,
+        title: Image.asset(
+          'images/hoop-stat-logo.png',
           width: 200,
-          child: Image.asset(
-            'images/hoop-stat-logo.png',
-          ),
+          fit: BoxFit.cover,
         ),
+        actions: [],
+        centerTitle: true,
+        elevation: 0,
       ),
-      //now we have finished the api service let's call it
-      //Now befo re we create Our layout let's create our API service
       body: FutureBuilder<List<SoccerMatch>>(
         future: SoccerApi()
             .getAllMatches(), //Here we will call our getData() method,
