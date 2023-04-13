@@ -76,7 +76,7 @@ class _PlayerBodyState extends State<PlayerBody> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xFFF3EED9),
+      backgroundColor: Color(0xFFEDF0F5),
       appBar: AppBar(
         backgroundColor: Color(0xFF6AB4DC),
         iconTheme: IconThemeData(color: Color(0xFFF3EED9)),
@@ -84,7 +84,7 @@ class _PlayerBodyState extends State<PlayerBody> with TickerProviderStateMixin {
         actions: [],
         flexibleSpace: FlexibleSpaceBar(
           title: Text(
-            'Page Title',
+            '',
             style: FlutterFlowTheme.of(context).title2.override(
                   fontFamily: 'Poppins',
                   color: Colors.white,
@@ -241,6 +241,7 @@ class _PlayerBodyState extends State<PlayerBody> with TickerProviderStateMixin {
                                       widget.playerModel.image,
                                       width: MediaQuery.of(context).size.width *
                                           0.9,
+                                      height: 250,
                                       fit: BoxFit.contain,
                                     ),
                                   ),
@@ -272,16 +273,19 @@ class _PlayerBodyState extends State<PlayerBody> with TickerProviderStateMixin {
                                           child: Align(
                                             alignment: AlignmentDirectional(
                                                 -0.9, -0.9),
-                                            child: Text(
-                                              'A PROPOS',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .title2
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            Color(0xFFFF686D),
-                                                      ),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(16.0),
+                                              child: Text(
+                                                'A PROPOS',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .title2
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color:
+                                                              Color(0xFFFF686D),
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -344,8 +348,9 @@ class _PlayerBodyState extends State<PlayerBody> with TickerProviderStateMixin {
                                                       ),
                                                       Text(
                                                         widget.playerModel
-                                                            .heightFeet
-                                                            .toUpperCase(),
+                                                                .heighInches
+                                                                .toUpperCase() +
+                                                            ' in',
                                                         textAlign:
                                                             TextAlign.center,
                                                         style: FlutterFlowTheme
@@ -355,7 +360,7 @@ class _PlayerBodyState extends State<PlayerBody> with TickerProviderStateMixin {
                                                                 fontFamily:
                                                                     'Poppins',
                                                                 color: Color(
-                                                                    0xFFD50032)),
+                                                                    0xFF101213)),
                                                       ),
                                                     ],
                                                   ),
@@ -418,14 +423,19 @@ class _PlayerBodyState extends State<PlayerBody> with TickerProviderStateMixin {
                                                       ),
                                                       Text(
                                                         widget.playerModel
-                                                            .weightPounds
-                                                            .toUpperCase(),
+                                                                .weightPounds
+                                                                .toUpperCase() +
+                                                            ' lbs',
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .title3,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .title3
+                                                            .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Color(
+                                                                    0xFF101213)),
                                                       ),
                                                     ],
                                                   ),
@@ -485,14 +495,19 @@ class _PlayerBodyState extends State<PlayerBody> with TickerProviderStateMixin {
                                                       ),
                                                       Text(
                                                         widget.playerModel
-                                                            .heighInches
-                                                            .toUpperCase(),
+                                                                .heightFeet
+                                                                .toUpperCase() +
+                                                            ' ft',
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .title3,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .title3
+                                                            .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Color(
+                                                                    0xFF101213)),
                                                       ),
                                                     ],
                                                   ),
@@ -556,10 +571,100 @@ class _PlayerBodyState extends State<PlayerBody> with TickerProviderStateMixin {
                                                             .toUpperCase(),
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .title3,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .title3
+                                                            .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Color(
+                                                                    0xFF101213)),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Expanded(
+                                          child: Align(
+                                            alignment: AlignmentDirectional(
+                                                -0.9, -0.9),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(16.0),
+                                              child: Text(
+                                                'SON ÉQUIPE',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .title2
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color:
+                                                              Color(0xFFFF686D),
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Card(
+                                            clipBehavior:
+                                                Clip.antiAliasWithSaveLayer,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            elevation: 5,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.90,
+                                                  height: 100,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    shape: BoxShape.rectangle,
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        widget.playerModel.team
+                                                            .fullName
+                                                            .toUpperCase(),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .title3
+                                                            .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Color(
+                                                                    0xFF101213)),
                                                       ),
                                                     ],
                                                   ),

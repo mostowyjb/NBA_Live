@@ -117,8 +117,9 @@ class _SoccerAppState extends State<SoccerApp> with TickerProviderStateMixin {
           if (snapshot.hasData) {
             return PageBody(snapshot.data!, context);
           } else if (snapshot.hasError) {
+            print(snapshot);
             return Center(
-              child: Text("${snapshot.error}"),
+              child: Text("${snapshot.error} icicic"),
             );
           } else {
             return Center(
@@ -142,7 +143,6 @@ class PlayerScreen extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    debugPrint(data);
     return Scaffold(
       body: FutureBuilder<PlayerModel>(
         future: SoccerApi()
@@ -179,25 +179,26 @@ class GameScreen extends StatelessWidget {
       required this.idHome,
       required this.idAway})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    print('ivi' + data + 'ivi');
     return Scaffold(
-      backgroundColor: const Color(0xFFFAFAFA),
+      backgroundColor: const Color(0xFFEDF0F5),
       appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white, //change your color here
+        backgroundColor: const Color(0xFFEDF0F5),
+        iconTheme: const IconThemeData(color: Color(0xFF202020)),
+        automaticallyImplyLeading: true,
+        title: Image.asset(
+          'images/hoop-stat-logo.png',
+          width: 200,
+          fit: BoxFit.cover,
         ),
-        backgroundColor: Colors.red,
-        toolbarHeight: 75,
-        titleSpacing: 00.0,
+        actions: const [],
         centerTitle: true,
-        toolbarOpacity: 0.8,
-        elevation: 0.0,
-        title: const Text(
-          "GAME",
-          style: TextStyle(color: Colors.white),
-        ),
+        elevation: 0,
       ),
+
       //now we have finished the api service let's call it
       //Now befo re we create Our layout let's create our API service
       body: FutureBuilder<SoccerMatch>(
@@ -209,7 +210,7 @@ class GameScreen extends StatelessWidget {
             return GameBody(snapshot.data!, context);
           } else if (snapshot.hasError) {
             return Center(
-              child: Text("${snapshot.error}"),
+              child: Text("${snapshot.error} aie"),
             );
           } else {
             return Center(

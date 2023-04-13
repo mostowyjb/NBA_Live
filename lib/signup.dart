@@ -68,7 +68,7 @@ class _SignupPageState extends State<SignupPage> {
                                 .createUserWithEmailAndPassword(
                                     email: _emailController.text,
                                     password: _passwordController.text);
-                            Navigator.pop(context);
+                            Navigator.pushNamed(context, '/');
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
                               print('The password provided is too weak.');

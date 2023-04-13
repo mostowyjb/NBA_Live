@@ -46,7 +46,6 @@ Widget PageBody(List<SoccerMatch> allmatches, context) {
     backgroundColor: Color(0xFFEDF0F5),
     body: SafeArea(
       child: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Stack(
           children: [
             Align(

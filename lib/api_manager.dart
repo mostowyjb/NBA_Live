@@ -19,31 +19,56 @@ class SoccerApi {
 
   //Now we will create our method
   //but before this we need to create our model
+  getUrlImgHome(match) async {
+    var urlHome =
+        "https://serpapi.com/search?q=${match['home_team']['name'].toString()}+logo+nba+basketball+small&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
+
+    Response resHome = await get(Uri.parse(urlHome));
+    var bodyHome = jsonDecode(resHome.body);
+    var imgHome = bodyHome['images_results'][0]['original'] as String;
+    return imgHome;
+  }
+
+  getUrlImgAway(match) async {
+    var urlVisitor =
+        "https://serpapi.com/search?q=${match['visitor_team']['name'].toString()}+logo+nba+basketball+small&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
+    Response resAway = await get(Uri.parse(urlVisitor));
+    var bodyAway = jsonDecode(resAway.body);
+    var imgAway = bodyAway['images_results'][0]['original'] as String;
+    return imgAway;
+  }
 
   //Now we finished with our Model
   Future<List<SoccerMatch>> getAllMatches() async {
     Response res = await get(Uri.parse(apiUrl));
-
     if (res.statusCode == 200) {
       // this mean that we are connected to the data base
       var body = jsonDecode(res.body);
       debugPrint(body['data'][0]['home_team']['name']);
       var urlHome =
-          "https://serpapi.com/search?q=${body['data'][0]['home_team']['name'].toString()}+logo+nba+basketball+small&api_key=933fe8d80a623ccabd384d10815c80d79d2a9d5a97887bf53aa764debd8285a9&tbm=isch&ijn=0";
-
+          "https://serpapi.com/search?q=${body['data'][0]['home_team']['name'].toString()}+logo+nba+basketball+small+official&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
+      debugPrint(urlHome);
       var urlVisitor =
-          "https://serpapi.com/search?q=${body['data'][0]['visitor_team']['name'].toString()}+logo+nba+basketball+small&api_key=933fe8d80a623ccabd384d10815c80d79d2a9d5a97887bf53aa764debd8285a9&tbm=isch&ijn=0";
+          "https://serpapi.com/search?q=${body['data'][0]['visitor_team']['name'].toString()}+logo+nba+basketball+small+official&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
       Response resHome = await get(Uri.parse(urlHome));
       var bodyHome = jsonDecode(resHome.body);
       var imgHome = bodyHome['images_results'][0]['original'] as String;
       Response resAway = await get(Uri.parse(urlVisitor));
       var bodyAway = jsonDecode(resAway.body);
       var imgAway = bodyAway['images_results'][0]['original'] as String;
-      debugPrint('ici² ${imgAway}');
+
       List<dynamic> matchesList = body['data'] as List;
+      // List<SoccerMatch> matches =
+      //     await Future.wait(matchesList.map((dynamic item) async {
+      //   String imgHome = await getUrlImgHome(item);
+      //   String imgAway = await getUrlImgAway(item);
+      //   return SoccerMatch.fromJson(item, imgHome, imgAway);
+      // }).toList());
+
       List<SoccerMatch> matches = matchesList
           .map((dynamic item) => SoccerMatch.fromJson(item, imgHome, imgAway))
           .toList();
+
       return matches;
     } else {
       throw "Error";
@@ -60,10 +85,10 @@ class SoccerApi {
       matchesList.add(body);
       try {
         var urlHome =
-            "https://serpapi.com/search?q=${body['home_team']['name'].toString()}+logo+nba+basketball+small&api_key=933fe8d80a623ccabd384d10815c80d79d2a9d5a97887bf53aa764debd8285a9&tbm=isch&ijn=0";
+            "https://serpapi.com/search?q=${body['home_team']['name'].toString()}+logo+nba+basketball+small&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
 
         var urlVisitor =
-            "https://serpapi.com/search?q=${body['visitor_team']['name'].toString()}+logo+nba+basketball+small&api_key=933fe8d80a623ccabd384d10815c80d79d2a9d5a97887bf53aa764debd8285a9&tbm=isch&ijn=0";
+            "https://serpapi.com/search?q=${body['visitor_team']['name'].toString()}+logo+nba+basketball+small&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
         Response resHome = await get(Uri.parse(urlHome));
         var bodyHome = jsonDecode(resHome.body);
         var imgHome = bodyHome['images_results'][0]['original'] as String;
@@ -129,7 +154,7 @@ class SoccerApi {
       playersList.add(body);
       try {
         var urltesr =
-            "https://serpapi.com/search?q=${playersList[0]['first_name'].toString()}+${playersList[0]['last_name'].toString()}+picture+player+nba+official&api_key=933fe8d80a623ccabd384d10815c80d79d2a9d5a97887bf53aa764debd8285a9&tbm=isch&ijn=0";
+            "https://serpapi.com/search?q=${playersList[0]['first_name'].toString()}+${playersList[0]['last_name'].toString()}+picture+player+nba+official&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
         debugPrint('test : $urltesr');
 
         Response res2 = await get(Uri.parse(urltesr), headers: {

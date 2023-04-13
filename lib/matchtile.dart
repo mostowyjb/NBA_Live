@@ -5,15 +5,19 @@ import 'main.dart';
 
 void _navigateToNextScreen(
     BuildContext context, String id, String idHome, String idAway) {
-  Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => GameScreen(
-            data: id,
-            idHome: idHome,
-            idAway: idAway,
-          )));
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (context) => GameScreen(
+              key: UniqueKey(),
+              data: id,
+              idHome: idHome,
+              idAway: idAway,
+            )),
+  );
 }
 
-Widget matchTile(SoccerMatch match, context) {
+Widget matchTile(SoccerMatch match, BuildContext context) {
   var homeGoal = match.goal.home;
   var awayGoal = match.goal.away;
   if (homeGoal == null) homeGoal = 0;
@@ -22,7 +26,10 @@ Widget matchTile(SoccerMatch match, context) {
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
     child: InkWell(
-      onTap: () async {},
+      onTap: () {
+        _navigateToNextScreen(context, match.fixture.id,
+            match.home.id.toString(), match.away.id.toString());
+      },
       child: Container(
         width: 100,
         decoration: BoxDecoration(
@@ -48,14 +55,14 @@ Widget matchTile(SoccerMatch match, context) {
                   Align(
                     alignment: const AlignmentDirectional(0, 0),
                     child: Container(
-                      width: 50,
-                      height: 75,
+                      width: 60,
+                      height: 60,
                       clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: Image.asset(
-                        'images/lb.png',
+                      child: Image.network(
+                        match.home.teamImg,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -64,7 +71,7 @@ Widget matchTile(SoccerMatch match, context) {
                     alignment: AlignmentDirectional(0, 1),
                     child: SelectionArea(
                         child: Text(
-                      'Team 1',
+                      '${match.home.name}',
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Poppins',
@@ -83,7 +90,7 @@ Widget matchTile(SoccerMatch match, context) {
                 children: [
                   SelectionArea(
                       child: Text(
-                    '125 -118',
+                    '$homeGoal - $awayGoal',
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Poppins',
@@ -100,23 +107,23 @@ Widget matchTile(SoccerMatch match, context) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0, 0),
+                    alignment: const AlignmentDirectional(0, 0),
                     child: Container(
-                      width: 50,
-                      height: 50,
+                      width: 60,
+                      height: 60,
                       clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: Image.asset(
-                        'images/flutter_ui_dev_logo_dark.png',
+                      child: Image.network(
+                        match.away.teamImg,
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   SelectionArea(
                       child: Text(
-                    'Team 2',
+                    match.away.name,
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Poppins',

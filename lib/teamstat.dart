@@ -29,7 +29,6 @@ Widget teamStat(String team, String img, dynamic context) {
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).bodyText1.override(
                   fontFamily: 'Poppins',
-                  color: const Color(0xFFF3EED9),
                   fontSize: 16,
                 ),
           )),

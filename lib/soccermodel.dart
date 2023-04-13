@@ -34,7 +34,6 @@ class Fixture {
   Fixture(this.id, this.date);
 
   factory Fixture.fromJson(String id, String date) {
-    debugPrint('Fixture');
     return Fixture(id, date);
   }
 }

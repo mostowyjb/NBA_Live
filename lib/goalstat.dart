@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 
-Widget goalStat(dynamic context, int homeGoal, int awayGoal) {
+Widget goalStat(BuildContext context, int homeGoal, int awayGoal) {
   var home = homeGoal;
   var away = awayGoal;
   if (home == null) home = 0;
@@ -18,7 +18,6 @@ Widget goalStat(dynamic context, int homeGoal, int awayGoal) {
           textAlign: TextAlign.center,
           style: FlutterFlowTheme.of(context).bodyText1.override(
                 fontFamily: 'Poppins',
-                color: Color(0xFFF3EED9),
                 fontSize: 16,
               ),
         )),
