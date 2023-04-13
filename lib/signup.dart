@@ -1,3 +1,5 @@
+import 'package:from_css_color/from_css_color.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/main.dart';
@@ -119,22 +121,26 @@ class _SignupPageState extends State<SignupPage> {
                                                     obscureText: false,
                                                     decoration: InputDecoration(
                                                       labelText: 'Email',
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                      labelStyle: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                      ),
                                                       hintText:
                                                           'Entrer votre email...',
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                      hintStyle: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                      ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
-                                                          width: 1,
+                                                          width: 2,
                                                         ),
                                                         borderRadius:
                                                             BorderRadius
@@ -174,18 +180,19 @@ class _SignupPageState extends State<SignupPage> {
                                                                 .circular(8),
                                                       ),
                                                       filled: true,
-                                                      fillColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
+                                                      fillColor: Color.fromARGB(
+                                                          255, 255, 255, 255),
                                                       contentPadding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(20, 24,
                                                                   20, 24),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText2,
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                    ),
                                                     validator: (String? value) {
                                                       if (value == null ||
                                                           value.isEmpty) {
@@ -211,16 +218,20 @@ class _SignupPageState extends State<SignupPage> {
                                                     obscureText: true,
                                                     decoration: InputDecoration(
                                                       labelText: 'Mot de passe',
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                      labelStyle: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                      ),
                                                       hintText:
                                                           'Entrer votre mdp...',
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                      hintStyle: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                      ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
@@ -266,18 +277,18 @@ class _SignupPageState extends State<SignupPage> {
                                                                 .circular(8),
                                                       ),
                                                       filled: true,
-                                                      fillColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
+                                                      fillColor: Colors.white,
                                                       contentPadding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(20, 24,
                                                                   20, 24),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText2,
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                    ),
                                                   ),
                                                 ),
                                                 Padding(
@@ -399,24 +410,27 @@ class _SignupPageState extends State<SignupPage> {
                                                         _emailController,
                                                     obscureText: false,
                                                     decoration: InputDecoration(
-                                                      labelText:
-                                                          'Email Address',
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                      labelText: 'Email',
+                                                      labelStyle: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                      ),
                                                       hintText:
-                                                          'Enter your email...',
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                          'Entrer votre email...',
+                                                      hintStyle: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                      ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
                                                               Color(0x00000000),
-                                                          width: 1,
+                                                          width: 2,
                                                         ),
                                                         borderRadius:
                                                             BorderRadius
@@ -456,18 +470,19 @@ class _SignupPageState extends State<SignupPage> {
                                                                 .circular(8),
                                                       ),
                                                       filled: true,
-                                                      fillColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
+                                                      fillColor: Color.fromARGB(
+                                                          255, 255, 255, 255),
                                                       contentPadding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(20, 24,
                                                                   20, 24),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText2,
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                    ),
                                                     validator: (String? value) {
                                                       if (value == null ||
                                                           value.isEmpty) {
@@ -483,19 +498,30 @@ class _SignupPageState extends State<SignupPage> {
                                                   child: TextFormField(
                                                     controller:
                                                         _passwordController,
+                                                    validator: (String? value) {
+                                                      if (value == null ||
+                                                          value.isEmpty) {
+                                                        return 'Please enter a valid password';
+                                                      }
+                                                      return null;
+                                                    },
                                                     obscureText: true,
                                                     decoration: InputDecoration(
-                                                      labelText: 'Password',
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                      labelText: 'Mot de passe',
+                                                      labelStyle: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                      ),
                                                       hintText:
-                                                          'Enter your password...',
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                          'Entrer votre mdp...',
+                                                      hintStyle: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                      ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
@@ -541,25 +567,18 @@ class _SignupPageState extends State<SignupPage> {
                                                                 .circular(8),
                                                       ),
                                                       filled: true,
-                                                      fillColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
+                                                      fillColor: Colors.white,
                                                       contentPadding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(20, 24,
                                                                   20, 24),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText2,
-                                                    validator: (String? value) {
-                                                      if (value == null ||
-                                                          value.isEmpty) {
-                                                        return 'Please enter a valid password';
-                                                      }
-                                                      return null;
-                                                    },
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                    ),
                                                   ),
                                                 ),
                                                 Padding(
