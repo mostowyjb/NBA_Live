@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'account.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -64,11 +65,24 @@ class _SignupPageState extends State<SignupPage> {
                             _loading = true;
                           });
                           try {
-                            final credential = await FirebaseAuth.instance
+                            final UserCredential credential = await FirebaseAuth
+                                .instance
                                 .createUserWithEmailAndPassword(
                                     email: _emailController.text,
                                     password: _passwordController.text);
-                            Navigator.pushNamed(context, '/');
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    'Inscription réussie. Email: ${credential.user?.email}'),
+                              ),
+                            );
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ProfilePage(user: credential.user)),
+                            );
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
                               print('The password provided is too weak.');
@@ -88,6 +102,56 @@ class _SignupPageState extends State<SignupPage> {
                         }
                       },
                       child: Text('Create Account'),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState?.validate() == true) {
+                          setState(() {
+                            _loading = true;
+                          });
+                          try {
+                            final UserCredential credential = await FirebaseAuth
+                                .instance
+                                .signInWithEmailAndPassword(
+                                    email: _emailController.text,
+                                    password: _passwordController.text);
+                            print('credential');
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    'Connexion réussie. Email: ${credential.user?.email}'),
+                              ),
+                            );
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ProfilePage(user: credential.user)),
+                            );
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'user-no-found') {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text('No user found.'),
+                              ));
+                            }
+                            print(e.code);
+                            setState(() {
+                              _loading = false;
+                            });
+                          } catch (e) {
+                            print(e);
+                            setState(() {
+                              _loading = false;
+                            });
+                          }
+                        }
+                      },
+                      child: Text('Log In'),
                     ),
                   ),
                 ],
