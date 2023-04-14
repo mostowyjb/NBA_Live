@@ -118,13 +118,17 @@ class _SoccerAppState extends State<SoccerApp> with TickerProviderStateMixin {
             return PageBody(snapshot.data!, context);
           } else if (snapshot.hasError) {
             print(snapshot);
-            return Center(
-              child: Text("${snapshot.error} icicic"),
+            return Scaffold(
+              backgroundColor: const Color(0xFFEDF0F5),
+              body: Text("${snapshot.error} icicic"),
             );
           } else {
-            return Center(
-              child: Image.asset(
-                "images/loading.gif",
+            return Scaffold(
+              backgroundColor: const Color(0xFFEDF0F5),
+              body: Center(
+                child: Image.asset(
+                  "images/loading.gif",
+                ),
               ),
             );
           }
@@ -144,6 +148,7 @@ class PlayerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEDF0F5),
       body: FutureBuilder<PlayerModel>(
         future: SoccerApi()
             .getPlayerById(data), //Here we will call our getData() method,
@@ -213,9 +218,12 @@ class GameScreen extends StatelessWidget {
               child: Text("${snapshot.error} aie"),
             );
           } else {
-            return Center(
-              child: Image.asset(
-                "images/loading.gif",
+            return Scaffold(
+              backgroundColor: const Color(0xFFEDF0F5),
+              body: Center(
+                child: Image.asset(
+                  "images/loading.gif",
+                ),
               ),
             );
           }
@@ -274,7 +282,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       return const RegisterScreen();
     }
     return Container(
-        color: Colors.blueAccent,
+        color: const Color(0xFFEDF0F5),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
