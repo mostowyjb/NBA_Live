@@ -44,30 +44,30 @@ class SoccerApi {
     if (res.statusCode == 200) {
       // this mean that we are connected to the data base
       var body = jsonDecode(res.body);
-      debugPrint(body['data'][0]['home_team']['name']);
-      var urlHome =
-          "https://serpapi.com/search?q=${body['data'][0]['home_team']['name'].toString()}+logo+nba+basketball+small+official&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
-      debugPrint(urlHome);
-      var urlVisitor =
-          "https://serpapi.com/search?q=${body['data'][0]['visitor_team']['name'].toString()}+logo+nba+basketball+small+official&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
-      Response resHome = await get(Uri.parse(urlHome));
-      var bodyHome = jsonDecode(resHome.body);
-      var imgHome = bodyHome['images_results'][0]['original'] as String;
-      Response resAway = await get(Uri.parse(urlVisitor));
-      var bodyAway = jsonDecode(resAway.body);
-      var imgAway = bodyAway['images_results'][0]['original'] as String;
+      // debugPrint(body['data'][0]['home_team']['name']);
+      // var urlHome =
+      //     "https://serpapi.com/search?q=${body['data'][0]['home_team']['name'].toString()}+logo+nba+basketball+small+official&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
+      // debugPrint(urlHome);
+      // var urlVisitor =
+      //     "https://serpapi.com/search?q=${body['data'][0]['visitor_team']['name'].toString()}+logo+nba+basketball+small+official&api_key=f3be5e704df07ed59a76360fdd4407cc2318349553fcd43903006cc0ae0adffb&tbm=isch&ijn=0";
+      // Response resHome = await get(Uri.parse(urlHome));
+      // var bodyHome = jsonDecode(resHome.body);
+      // var imgHome = bodyHome['images_results'][0]['original'] as String;
+      // Response resAway = await get(Uri.parse(urlVisitor));
+      // var bodyAway = jsonDecode(resAway.body);
+      // var imgAway = bodyAway['images_results'][0]['original'] as String;
 
       List<dynamic> matchesList = body['data'] as List;
-      // List<SoccerMatch> matches =
-      //     await Future.wait(matchesList.map((dynamic item) async {
-      //   String imgHome = await getUrlImgHome(item);
-      //   String imgAway = await getUrlImgAway(item);
-      //   return SoccerMatch.fromJson(item, imgHome, imgAway);
-      // }).toList());
+      List<SoccerMatch> matches =
+          await Future.wait(matchesList.map((dynamic item) async {
+        String imgHome = await getUrlImgHome(item);
+        String imgAway = await getUrlImgAway(item);
+        return SoccerMatch.fromJson(item, imgHome, imgAway);
+      }).toList());
 
-      List<SoccerMatch> matches = matchesList
-          .map((dynamic item) => SoccerMatch.fromJson(item, imgHome, imgAway))
-          .toList();
+      // List<SoccerMatch> matches = matchesList
+      //     .map((dynamic item) => SoccerMatch.fromJson(item, imgHome, imgAway))
+      //     .toList();
 
       return matches;
     } else {

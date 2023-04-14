@@ -586,14 +586,13 @@ class _SignupPageState extends State<SignupPage> {
                                                       .fromSTEB(0, 24, 0, 24),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
-                                                      if (_formKey.currentState
+                                                      if (_formKey2.currentState
                                                               ?.validate() ==
                                                           true) {
                                                         setState(() {
                                                           _loading = true;
                                                         });
                                                         try {
-                                                          print('object');
                                                           final UserCredential
                                                               credential =
                                                               await FirebaseAuth
@@ -623,22 +622,17 @@ class _SignupPageState extends State<SignupPage> {
                                                                             .user)),
                                                           );
                                                         } on FirebaseAuthException catch (e) {
-                                                          if (e.code ==
-                                                              'user-no-found') {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    const SnackBar(
-                                                              content: Text(
-                                                                  'No user found.'),
-                                                            ));
-                                                          }
-                                                          print(e.code);
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                                  const SnackBar(
+                                                            content: Text(
+                                                                'No user found.'),
+                                                          ));
                                                           setState(() {
                                                             _loading = false;
                                                           });
                                                         } catch (e) {
-                                                          print(e);
                                                           setState(() {
                                                             _loading = false;
                                                           });
